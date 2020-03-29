@@ -1,5 +1,12 @@
 /**
+ * This file contains an implementation of bottom-up merge sort. 
+ * Merge sort is the most famous divide-and-conquer sorting algorithm.
+ * Time complexity: 	O(n log n)
+ * Space complexity: 	O(n)
+ * 		n -> size of array
  * 
+ * @author Mislav.Gazdovic, mislav.gazdovic@gmail.com
+ *
  */
 package com.mgazdovic.algo.sorting;
 
