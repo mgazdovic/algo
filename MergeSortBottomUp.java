@@ -15,7 +15,7 @@ package com.mgazdovic.algo.sorting;
 
 public class MergeSortBottomUp {
 	
-	/** Performs bottom-up merge sort algorithm. 
+	  /** Performs bottom-up merge sort algorithm. 
 	  * @param input non-empty array to be sorted.
 	  * @throws IllegalArgumentException if input is null or contains no elements.
 	  */
@@ -75,6 +75,7 @@ public class MergeSortBottomUp {
 		assert isSorted(input, fromIndex, toIndex);
 	}
 	
+	// 
 	/** Method to check if input array is sorted between [fromIndex, toIndex>
 	  * @param input non-empty array to be checked.
 	  * @param fromIndex starting index (inclusive).
@@ -84,7 +85,8 @@ public class MergeSortBottomUp {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static boolean isSorted(Comparable[] input, int fromIndex, int toIndex) {
 		// input validation
-		if (input == null || fromIndex < 0 || toIndex > input.length) throw new IllegalArgumentException("Index out of bounds");
+		if (input == null) throw new IllegalArgumentException("Input array cannot be null");
+		if (fromIndex < 0 || toIndex > input.length) throw new IllegalArgumentException("Index out of bounds");
 		if (fromIndex > toIndex - 1) throw new IllegalArgumentException("Must satisfy fromIndex <= toIndex - 1");
 		
 		// one element -> sorted
