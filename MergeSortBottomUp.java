@@ -8,17 +8,20 @@
  * @author Mislav.Gazdovic, mislav.gazdovic@gmail.com
  *
  */
+
 package com.mgazdovic.algo.sorting;
 
-/**
- * @author Mislav.Gazdovic, mislav.gazdovic@gmail.com
- *
- */
 public class MergeSortBottomUp {
 	
-	// O(n log n) time, O(n) space
+	  /**
+	  * @param input non-empty array to be sorted.
+	  * @throws IllegalArgumentException if input is null or contains no elements.
+	  */
 	@SuppressWarnings("rawtypes")
 	public static void sort(Comparable[] input) {
+		// input validation
+		if (input == null || input.length == 0) throw new IllegalArgumentException("Array must contain at least one element");
+		
 		final int N = input.length;
 		Comparable[] aux = new Comparable[N];
 		
@@ -65,7 +68,6 @@ public class MergeSortBottomUp {
 	}
 	
 	// method to check if input array is sorted between startIndex and endIndex
-	// O(n) time, O(1) space
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static boolean isSorted(Comparable[] input, int startIndex, int endIndex) {
 		// input validation
