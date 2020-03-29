@@ -35,32 +35,32 @@ public class MergeSortBottomUp {
 		assert isSorted(input, 0, N);
 	}
 	
-	/** Merges sorted subarrays [fromIndex, midIndex> and [midIndex, toIndex> into a sorted array [fromIndex, toIndex>
+	/** Merges sorted subarrays [from, mid> and [mid, to> into a sorted array [from, to>
 	  * @param input non-empty array to be sorted.
 	  * @param aux auxiliary array for merge routine.
-	  * @param fromIndex starting index for first subarray (inclusive).
-	  * @param midIndex ending index for first subarray (exclusive) and starting index for second subarray (inclusive).
-	  * @param toIndex ending index for second subarray (exclusive).
+	  * @param from starting index for first subarray (inclusive).
+	  * @param mid ending index for first subarray (exclusive) and starting index for second subarray (inclusive).
+	  * @param to ending index for second subarray (exclusive).
 	  */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static void merge (Comparable[] input, Comparable[] aux, int fromIndex, int midIndex, int toIndex) {
+	private static void merge (Comparable[] input, Comparable[] aux, int from, int mid, int to) {
 	
-		assert isSorted(input, fromIndex, midIndex);
-		assert isSorted(input, midIndex, toIndex);
+		assert isSorted(input, from, mid);
+		assert isSorted(input, mid, to);
 		
 		// prepare auxiliary array
-		for (int k = fromIndex; k < toIndex; k++) {
+		for (int k = from; k < to; k++) {
 			aux[k] = input[k];
 		}
 		
 		// merge routine
-		int i = fromIndex, j = midIndex, sortedIndex = fromIndex;
-		while (sortedIndex < toIndex) {
+		int i = from, j = mid, sortedIndex = from;
+		while (sortedIndex < to) {
 			// check if any subarray done -> copy remaining
-			if (i >= midIndex) {
+			if (i >= mid) {
 				input[sortedIndex++] = aux[j++];
 			}
-			else if (j >= toIndex) {
+			else if (j >= to) {
 				input[sortedIndex++] = aux[i++];
 			}
 			// both subarrays not done -> take smaller element
@@ -72,30 +72,30 @@ public class MergeSortBottomUp {
 			}
 		}
 		
-		assert isSorted(input, fromIndex, toIndex);
+		assert isSorted(input, from, to);
 	}
 	
-	/** Method to check if input array is sorted between [fromIndex, toIndex>
+	/** Method to check if input array is sorted between [from, to>
 	  * @param input non-empty array to be checked.
-	  * @param fromIndex starting index (inclusive).
-	  * @param toIndex ending index (exclusive).
+	  * @param from starting index (inclusive).
+	  * @param to ending index (exclusive).
 	  * @throws IllegalArgumentException if input is not valid (null or invalid indexes). 
 	  */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static boolean isSorted(Comparable[] input, int fromIndex, int toIndex) {
+	private static boolean isSorted(Comparable[] input, int from, int to) {
 		// input validation
 		if (input == null) throw new IllegalArgumentException("Input cannot be null");
-		if (fromIndex < 0 || toIndex > input.length) throw new IllegalArgumentException("Index out of bounds");
-		if (fromIndex >= toIndex) throw new IllegalArgumentException("Must satisfy fromIndex < toIndex");
+		if (from < 0 || to > input.length) throw new IllegalArgumentException("Index out of bounds");
+		if (from >= to) throw new IllegalArgumentException("Must satisfy from < to");
 		
 		// one element -> sorted
-		if (fromIndex == toIndex - 1) return true;
+		if (from == to - 1) return true;
 		
 		// two elements -> compare the two
-		if (fromIndex == toIndex - 2) return input[fromIndex].compareTo(input[fromIndex+1]) <= 0;
+		if (from == to - 2) return input[from].compareTo(input[from+1]) <= 0;
 		
 		// more elements -> check if any subsequent pair violates (ascending) sorted order
-		for (int i = fromIndex + 1; i < toIndex; i++) {
+		for (int i = from + 1; i < to; i++) {
 			if (input[i].compareTo(input[i-1]) < 0) return false;
 		}
 		
