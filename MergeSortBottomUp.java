@@ -89,14 +89,10 @@ public class MergeSortBottomUp {
 		if (fromIndex > toIndex - 1) throw new IllegalArgumentException("Must satisfy fromIndex <= toIndex - 1");
 		
 		// one element -> sorted
-		if (fromIndex == toIndex - 1) {
-			return true;
-		}
+		if (fromIndex == toIndex - 1) return true;
 		
 		// two elements -> compare the two
-		if (fromIndex == toIndex - 2) {
-			return input[fromIndex].compareTo(input[toIndex-1]) <= 0;
-		}
+		if (fromIndex == toIndex - 2) return input[fromIndex].compareTo(input[toIndex-1]) <= 0;
 		
 		// more elements -> check if any subsequent pair violates (ascending) sorted order
 		for (int i = fromIndex + 1; i < toIndex; i++) {
