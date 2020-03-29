@@ -15,7 +15,7 @@ package com.mgazdovic.algo.sorting;
 
 public class MergeSortBottomUp {
 	
-	  /** Performs bottom-up merge sort algorithm. 
+	/** Performs bottom-up merge sort algorithm. 
 	  * @param input non-empty array to be sorted.
 	  * @throws IllegalArgumentException if input is null or contains no elements.
 	  */
@@ -75,7 +75,6 @@ public class MergeSortBottomUp {
 		assert isSorted(input, fromIndex, toIndex);
 	}
 	
-	// 
 	/** Method to check if input array is sorted between [fromIndex, toIndex>
 	  * @param input non-empty array to be checked.
 	  * @param fromIndex starting index (inclusive).
