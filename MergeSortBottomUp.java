@@ -5,7 +5,7 @@
  * 
  * Time complexity: 	O(n log n)
  * Space complexity: 	O(n)
- * 		n -> size of array
+ * 		n -> size of array to be sorted
  * 
  * @author Mislav.Gazdovic, mislav.gazdovic@gmail.com
  *
@@ -35,7 +35,7 @@ public class MergeSortBottomUp {
 		assert isSorted(input, 0, N);
 	}
 	
-	/** Merges sorted arrays [fromIndex, midIndex> and [midIndex, toIndex> to sorted array [fromIndex, toIndex>
+	/** Merges sorted subarrays [fromIndex, midIndex> and [midIndex, toIndex> into a sorted array [fromIndex, toIndex>
 	  * @param input non-empty array to be sorted.
 	  * @param aux auxiliary array for merge routine.
 	  * @param fromIndex starting index for first subarray (inclusive).
@@ -48,7 +48,7 @@ public class MergeSortBottomUp {
 		assert isSorted(input, fromIndex, midIndex);
 		assert isSorted(input, midIndex, toIndex);
 		
-		// create auxiliary array
+		// prepare auxiliary array
 		for (int k = fromIndex; k < toIndex; k++) {
 			aux[k] = input[k];
 		}
@@ -84,7 +84,7 @@ public class MergeSortBottomUp {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static boolean isSorted(Comparable[] input, int fromIndex, int toIndex) {
 		// input validation
-		if (input == null) throw new IllegalArgumentException("Input array cannot be null");
+		if (input == null) throw new IllegalArgumentException("Input cannot be null");
 		if (fromIndex < 0 || toIndex > input.length) throw new IllegalArgumentException("Index out of bounds");
 		if (fromIndex >= toIndex) throw new IllegalArgumentException("Must satisfy fromIndex < toIndex");
 		
@@ -92,7 +92,7 @@ public class MergeSortBottomUp {
 		if (fromIndex == toIndex - 1) return true;
 		
 		// two elements -> compare the two
-		if (fromIndex == toIndex - 2) return input[fromIndex].compareTo(input[toIndex-1]) <= 0;
+		if (fromIndex == toIndex - 2) return input[fromIndex].compareTo(input[fromIndex+1]) <= 0;
 		
 		// more elements -> check if any subsequent pair violates (ascending) sorted order
 		for (int i = fromIndex + 1; i < toIndex; i++) {
