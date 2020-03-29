@@ -1,6 +1,8 @@
 /**
  * This file contains an implementation of bottom-up merge sort. 
- * Merge sort is the most famous divide-and-conquer sorting algorithm.
+ * Merge sort is the most famous divide-and-conquer sorting algorithm. 
+ * This is a fun little optimization over a simple recursive solution which avoids the recursion overhead using bottom-up approach.
+ * 
  * Time complexity: 	O(n log n)
  * Space complexity: 	O(n)
  * 		n -> size of array
@@ -13,7 +15,7 @@ package com.mgazdovic.algo.sorting;
 
 public class MergeSortBottomUp {
 	
-	  /**
+	  /** Performs bottom-up merge sort algorithm. 
 	  * @param input non-empty array to be sorted.
 	  * @throws IllegalArgumentException if input is null or contains no elements.
 	  */
@@ -33,26 +35,32 @@ public class MergeSortBottomUp {
 		assert isSorted(input, 0, N);
 	}
 	
-	// merge sorted arrays [startIndex, midIndex> and [midIndex, endIndex> to sorted array [startIndex, endIndex>
+	/** Merges sorted arrays [fromIndex, midIndex> and [midIndex, toIndex> to sorted array [fromIndex, toIndex>
+	  * @param input non-empty array to be sorted.
+	  * @param aux auxiliary array for merge routine.
+	  * @param fromIndex starting index for first subarray (inclusive).
+	  * @param midIndex ending index for first subarray (exclusive) and starting index for second subarray (inclusive).
+	  * @param toIndex ending index for second subarray (exclusive).
+	  */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static void merge (Comparable[] input, Comparable[] aux, int startIndex, int midIndex, int endIndex) {
+	private static void merge (Comparable[] input, Comparable[] aux, int fromIndex, int midIndex, int toIndex) {
 	
-		assert isSorted(input, startIndex, midIndex);
-		assert isSorted(input, midIndex, endIndex);
+		assert isSorted(input, fromIndex, midIndex);
+		assert isSorted(input, midIndex, toIndex);
 		
 		// create auxiliary array
-		for (int k = startIndex; k < endIndex; k++) {
+		for (int k = fromIndex; k < toIndex; k++) {
 			aux[k] = input[k];
 		}
 		
 		// merge routine
-		int i = startIndex, j = midIndex, sortedIndex = startIndex;
-		while (sortedIndex < endIndex) {
+		int i = fromIndex, j = midIndex, sortedIndex = fromIndex;
+		while (sortedIndex < toIndex) {
 			// check if any subarray done -> copy remaining
 			if (i >= midIndex) {
 				input[sortedIndex++] = aux[j++];
 			}
-			else if (j >= endIndex) {
+			else if (j >= toIndex) {
 				input[sortedIndex++] = aux[i++];
 			}
 			// both subarrays not done -> take smaller element
@@ -64,21 +72,33 @@ public class MergeSortBottomUp {
 			}
 		}
 		
-		assert isSorted(input, startIndex, endIndex);
+		assert isSorted(input, fromIndex, toIndex);
 	}
 	
-	// method to check if input array is sorted between startIndex and endIndex
+	// 
+	/** Method to check if input array is sorted between [fromIndex, toIndex>
+	  * @param input non-empty array to be checked.
+	  * @param fromIndex starting index (inclusive).
+	  * @param toIndex ending index (exclusive).
+	  */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static boolean isSorted(Comparable[] input, int startIndex, int endIndex) {
+	private static boolean isSorted(Comparable[] input, int fromIndex, int toIndex) {
 		// input validation
-		if (startIndex < 0 || endIndex >= input.length) throw new IllegalArgumentException("Index out of bounds");
-		if (startIndex > endIndex) throw new IllegalArgumentException("Must satisfy startIndex <= endIndex");
-			
-		// single element -> sorted
-		if (startIndex == endIndex) return true;
-			
-		// check if any subsequent pair violates (ascending) sorted order
-		for (int i = startIndex + 1; i < endIndex; i++) {
+		if (fromIndex < 0 || toIndex > input.length) throw new IllegalArgumentException("Index out of bounds");
+		if (fromIndex > toIndex - 1) throw new IllegalArgumentException("Must satisfy fromIndex <= toIndex - 1");
+		
+		// one element -> sorted
+		if (fromIndex == toIndex - 1) {
+			return true;
+		}
+		
+		// two elements -> compare the two
+		if (fromIndex == toIndex - 2) {
+			return input[fromIndex].compareTo(input[toIndex-1]) <= 0;
+		}
+		
+		// more elements -> check if any subsequent pair violates (ascending) sorted order
+		for (int i = fromIndex + 1; i < toIndex; i++) {
 			if (input[i].compareTo(input[i-1]) < 0) return false;
 		}
 		
