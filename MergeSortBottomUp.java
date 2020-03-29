@@ -86,7 +86,7 @@ public class MergeSortBottomUp {
 		// input validation
 		if (input == null) throw new IllegalArgumentException("Input array cannot be null");
 		if (fromIndex < 0 || toIndex > input.length) throw new IllegalArgumentException("Index out of bounds");
-		if (fromIndex > toIndex - 1) throw new IllegalArgumentException("Must satisfy fromIndex <= toIndex - 1");
+		if (fromIndex >= toIndex) throw new IllegalArgumentException("Must satisfy fromIndex < toIndex");
 		
 		// one element -> sorted
 		if (fromIndex == toIndex - 1) return true;
