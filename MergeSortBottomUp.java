@@ -1,6 +1,6 @@
 /**
  * This file contains an implementation of bottom-up merge sort. 
- * Merge sort is the most famous divide-and-conquer sorting algorithm. 
+ * Merge sort is a famous divide-and-conquer sorting algorithm. 
  * This is a fun little optimization over a simple recursive solution which avoids the recursion overhead using bottom-up approach.
  * 
  * Time complexity: 	O(n log n)
