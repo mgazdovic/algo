@@ -19,13 +19,12 @@ public class MergeSortBottomUp {
 	  * @param input non-empty array to be sorted.
 	  * @throws IllegalArgumentException if input is null or contains no elements.
 	  */
-	@SuppressWarnings("rawtypes")
-	public static void sort(Comparable[] input) {
+	public static <T extends Comparable<T>> void sort(T[] input) {
 		// input validation
 		if (input == null || input.length == 0) throw new IllegalArgumentException("Array must contain at least one element");
 		
 		final int N = input.length;
-		Comparable[] aux = new Comparable[N];
+		T[] aux = input.clone();
 		
 		// merge all sorted subarrays of size 1, 2, 4, ..., N/2 -> N
 		for (int size = 1; size < N; size *= 2)
@@ -42,8 +41,7 @@ public class MergeSortBottomUp {
 	  * @param mid ending index for first subarray (exclusive) and starting index for second subarray (inclusive).
 	  * @param to ending index for second subarray (exclusive).
 	  */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static void merge (Comparable[] input, Comparable[] aux, int from, int mid, int to) {
+	private static <T extends Comparable<T>> void merge (T[] input, T[] aux, int from, int mid, int to) {
 	
 		assert isSorted(input, from, mid);
 		assert isSorted(input, mid, to);
@@ -81,8 +79,7 @@ public class MergeSortBottomUp {
 	  * @param to ending index (exclusive).
 	  * @throws IllegalArgumentException if input is not valid (null or invalid indexes). 
 	  */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static boolean isSorted(Comparable[] input, int from, int to) {
+	private static <T extends Comparable<T>> boolean isSorted(T[] input, int from, int to) {
 		// input validation
 		if (input == null) throw new IllegalArgumentException("Input cannot be null");
 		if (from < 0 || to > input.length) throw new IllegalArgumentException("Index out of bounds");
