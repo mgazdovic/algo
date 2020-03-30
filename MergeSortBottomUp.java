@@ -28,9 +28,9 @@ public class MergeSortBottomUp {
 		Comparable[] aux = new Comparable[N];
 		
 		// merge all sorted subarrays of size 1, 2, 4, ..., N/2 -> N
-		for (int sz = 1; sz < N; sz *= 2)
-			for (int i = 0; i < N; i += 2*sz)	
-				merge(input, aux, i, i + sz, Math.min(i + 2*sz, N));
+		for (int size = 1; size < N; size *= 2)
+			for (int i = 0; i < N; i += 2*size)	
+				merge(input, aux, i, i + size, Math.min(i + 2*size, N));
 		
 		assert isSorted(input, 0, N);
 	}
