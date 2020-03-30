@@ -43,30 +43,30 @@ public class MergeSortBottomUp {
 	  */
 	private static <T extends Comparable<T>> void merge (T[] input, T[] aux, int from, int mid, int to) {
 	
-		assert isSorted(input, from, mid);
-		assert isSorted(input, mid, to);
+		assert isSorted(input, from, mid);	// first subarray
+		assert isSorted(input, mid, to);	// second subarray
 		
 		// prepare auxiliary array
-		for (int k = from; k < to; k++) {
-			aux[k] = input[k];
+		for (int i = from; i < to; i++) {
+			aux[i] = input[i];
 		}
 		
 		// merge routine
-		int i = from, j = mid, sortedIndex = from;
+		int firstIndex = from, secondIndex = mid, sortedIndex = from;
 		while (sortedIndex < to) {
 			// check if any subarray done -> copy remaining
-			if (i >= mid) {
-				input[sortedIndex++] = aux[j++];
+			if (firstIndex >= mid) {
+				input[sortedIndex++] = aux[secondIndex++];
 			}
-			else if (j >= to) {
-				input[sortedIndex++] = aux[i++];
+			else if (secondIndex >= to) {
+				input[sortedIndex++] = aux[firstIndex++];
 			}
 			// both subarrays not done -> take smaller element
-			else if (aux[i].compareTo(aux[j]) <= 0) {
-				input[sortedIndex++] = aux[i++];
+			else if (aux[firstIndex].compareTo(aux[secondIndex]) <= 0) {
+				input[sortedIndex++] = aux[firstIndex++];
 			}
 			else {
-				input[sortedIndex++] = aux[j++];
+				input[sortedIndex++] = aux[secondIndex++];
 			}
 		}
 		
