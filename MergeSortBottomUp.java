@@ -1,7 +1,7 @@
 /**
  * This file contains an implementation of bottom-up merge sort. 
  * Merge sort is a famous divide-and-conquer sorting algorithm. 
- * This is a fun little optimization over a simple recursive solution which avoids the recursion overhead using bottom-up approach.
+ * This is a fun optimization over a simple recursive solution which avoids the recursion overhead using bottom-up approach.
  * 
  * Time complexity: 	O(n log n)
  * Space complexity: 	O(n)
@@ -87,14 +87,8 @@ public class MergeSortBottomUp {
 		if (input == null) throw new IllegalArgumentException("Input cannot be null");
 		if (from < 0 || to > input.length) throw new IllegalArgumentException("Index out of bounds");
 		if (from >= to) throw new IllegalArgumentException("Must satisfy from < to");
-		
-		// one element -> sorted
-		if (from == to - 1) return true;
-		
-		// two elements -> compare the two
-		if (from == to - 2) return input[from].compareTo(input[from+1]) <= 0;
-		
-		// more elements -> check if any subsequent pair violates (ascending) sorted order
+				
+		// check if any subsequent pair violates (ascending) sorted order
 		for (int i = from + 1; i < to; i++) {
 			if (input[i].compareTo(input[i-1]) < 0) return false;
 		}
