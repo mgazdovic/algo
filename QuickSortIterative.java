@@ -56,6 +56,7 @@ public class QuickSortIterative {
 	  * @param input non-empty array to be partitioned.
 	  * @param from starting index (inclusive).
 	  * @param to ending index (exclusive).
+	  * @return index of pivot element which is now in correct sorted position. 
 	  */
 	private static <T extends Comparable<T>> int partition(T[] input, int from, int to) {
 		// move random pivot to last position (randomness improves performance)
@@ -97,6 +98,7 @@ public class QuickSortIterative {
 	  * @param from starting index (inclusive).
 	  * @param to ending index (exclusive).
 	  * @param partitionIndex index of pivot element around which input array partitioning is checked.
+	  * @return true if range is correctly partitioned around element at partition index; false otherwise. 
 	  * @throws IllegalArgumentException if input is not valid (null or invalid indexes). 
 	  */
 	private static <T extends Comparable<T>> boolean isPartitioned(T[] input, int from, int to, int partitionIndex) {
