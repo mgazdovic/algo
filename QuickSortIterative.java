@@ -29,13 +29,13 @@ public class QuickSortIterative {
 		
 		// create "to do" list of [from, to> pairs
 		Deque<IndexPair> todo = new LinkedList<>();
-		todo.add(new IndexPair(0, input.length));
+		todo.push(new IndexPair(0, input.length));
 		
 		// check to do list
 		while (!todo.isEmpty()) {
 			
 			// fetch next from to do list
-			IndexPair next = todo.poll();
+			IndexPair next = todo.pop();
 			int from = next.from, to = next.to;
 			
 			// partition puts pivot in correct position and divides array into two (potentially unsorted) subarrays
@@ -43,11 +43,11 @@ public class QuickSortIterative {
 		
 			// add left subarray if there is still something to do
 			if (partitionIndex > from) {
-				todo.add(new IndexPair(from, partitionIndex));
+				todo.push(new IndexPair(from, partitionIndex));
 			}
 			// add right subarray if there is still something to do
 			if (partitionIndex + 1 < to) {
-				todo.add(new IndexPair(partitionIndex + 1, to));
+				todo.push(new IndexPair(partitionIndex + 1, to));
 			}
 		}
 	}
