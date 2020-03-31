@@ -1,5 +1,5 @@
 /**
- * This file contains an iterative implementation of quick sort. 
+ * This file contains an iterative implementation of quick sort... 
  * Much more fun than simple recursion, see for yourself ;)
  * 
  * Time complexity: 	O(n log n) expected (with high probability -> random pivot)
