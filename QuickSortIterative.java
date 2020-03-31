@@ -1,6 +1,6 @@
 /**
- * This file contains an implementation of iterative quick sort. 
- * (... recursive implementation added for easy comparison ...)
+ * This file contains an iterative implementation of quick sort. 
+ * Much more fun than simple recursion, see for yourself ;)
  * 
  * Time complexity: 	O(n log n) expected (with high probability -> random pivot)
  * Space complexity: 	O(log n)
@@ -46,7 +46,7 @@ public class QuickSortIterative {
 				todo.add(new IndexPair(from, partitionIndex));
 			}
 			// add right subarray if there is still something to do
-			if (partitionIndex < to - 1) {
+			if (partitionIndex + 1 < to) {
 				todo.add(new IndexPair(partitionIndex + 1, to));
 			}
 		}
