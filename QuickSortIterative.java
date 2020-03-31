@@ -1,6 +1,6 @@
 /**
  * This file contains an iterative implementation of quick sort. 
- * Much more fun than simple recursion, see for yourself ;)
+ * Much more fun than simple recursion ;)
  * 
  * Time complexity: 	O(n log n) expected (with high probability -> random pivot)
  * Space complexity: 	O(log n)
