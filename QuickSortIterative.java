@@ -58,7 +58,7 @@ public class QuickSortIterative {
 	  * @param to ending index (exclusive).
 	  * @return index of pivot element which is now in correct sorted position. 
 	  */
-	private static <T extends Comparable<T>> int partition(T[] input, int from, int to) {
+	public static <T extends Comparable<T>> int partition(T[] input, int from, int to) {
 		// move random pivot to last position (randomness improves performance)
 		int last = to - 1;
 		int randomIndex = from + (int)(Math.random()*(last - from)); // random index in range [from, to>
