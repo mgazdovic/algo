@@ -1,3 +1,15 @@
+/**
+ * This file contains a dynamic programming implementation of minimum coins problem. 
+ * 
+ * Time complexity: 	O(n * total)
+ * Space complexity: 	O(total)
+ * 		n -> number of distinct coins
+ * 		total -> coin values target sum
+ * 
+ * @author Mislav.Gazdovic, mislav.gazdovic@gmail.com
+ *
+ */
+
 package com.mgazdovic.algo.dp;
 
 import java.util.Arrays;
