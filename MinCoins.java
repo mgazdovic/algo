@@ -17,7 +17,7 @@ public class MinCoins {
 		
 		int[] dp = new int[total+1]; 
 		Arrays.fill(dp, Integer.MAX_VALUE); // max value = not reachable
-		dp[0] = 0; 							// base case
+		dp[0] = 0; // base case
 		
 		// bottom-up for each total
 		for (int i = 1; i <= total; i++) {
