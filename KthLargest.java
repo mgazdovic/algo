@@ -22,6 +22,7 @@ public class KthLargest {
 	/** Performs quick select algorithm. 
 	  * @param input non-empty array which is partitioned until k-th largest element is returned.
 	  * @param k rank of element to be found. 
+	  * @return k-th largest element (any element with rank equal to k). 
 	  * @throws IllegalArgumentException if input contains no elements or k is invalid.
 	  */
 	public static <T extends Comparable<T>> T quickSelect(T[] input, int k) {
@@ -62,6 +63,7 @@ public class KthLargest {
 	/** Performs k-largest selection algorithm using min heap. 
 	  * @param input non-empty array which is partitioned until k-th largest element is returned.
 	  * @param k rank of element to be found. 
+	  * @return k-th largest element (any element with rank equal to k). 
 	  * @throws IllegalArgumentException if input contains no elements or k is invalid.
 	  */
 	public static <T extends Comparable<T>> T minHeapSelect(T[] input, int k) {
