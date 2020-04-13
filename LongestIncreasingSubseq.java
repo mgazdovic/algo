@@ -1,6 +1,11 @@
 /**
  * This file contains a dynamic programming implementation of longest increasing subsequence (LIS) problem. 
  * 
+ * Reccurence: 
+ * Let DP(i) be the LIS up to index i in seq. Then, for each i: 
+ * DP(i+1) = 1 + max{DP(j)} for all j up to i (0 <= j <= i) where seq(i+1) > seq(j)
+ * DP(0) = 1 (base case)
+ * 
  * Time complexity: 	O(n * total)
  * Space complexity: 	O(total)
  * 		n -> number of available coins
@@ -11,8 +16,6 @@
  */
 
 package com.mgazdovic.algo.dp;
-
-import java.util.Arrays;
 
 public class LongestIncreasingSubseq {
 
@@ -27,7 +30,7 @@ public class LongestIncreasingSubseq {
 		if (sequence == null || sequence.length == 0) throw new IllegalArgumentException("Array must contain at least one element");
 		
 		int[] dp = new int[sequence.length]; 
-		Arrays.fill(dp, 1); // base case (assume all LIS -> 1)
+		dp[0] = 1; // base case
 		
 		// bottom-up for LIS up to each index i
 		for (int i = 0; i < sequence.length - 1; i++) {
@@ -40,7 +43,7 @@ public class LongestIncreasingSubseq {
 			}
 			// greater elements found -> increment max LIS
 			// no greater elements found -> reset LIS to 1
-			dp[i+1] = max > 0 ? (max + 1) : 1;		
+			dp[i+1] = max + 1;
 		}
 		
 		return getMax(dp);

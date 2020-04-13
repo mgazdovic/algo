@@ -1,5 +1,10 @@
 /**
  * This file contains a dynamic programming implementation of minimum coins problem. 
+ *
+ * Reccurence: 
+ * Let DP(i) be the minimum number of coins to get the total i. Then, for each i: 
+ * DP(i) = min{DP(i-coins(j)) + 1}, minimum over each coin j in coins
+ * DP(0) = 0 (base case)
  * 
  * Time complexity: 	O(n * total)
  * Space complexity: 	O(total)
