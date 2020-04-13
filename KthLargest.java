@@ -5,7 +5,7 @@
  * -> 2) maintaining a heap of fixed size k -> O(n log k) worst case
  * Space complexity:
  * -> 1) O(1) 
- * -> 2) O(k) 
+ * -> 2) O(k)
  * 		n -> size of array, k -> rank of element to be found
  * 
  * @author Mislav.Gazdovic, mislav.gazdovic@gmail.com
